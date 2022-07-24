@@ -37,6 +37,7 @@ async function run(): Promise<void> {
         '`tag` is required along with `releaseName` when creating a release.'
       )
     }
+    console.log("Attempting to start the things");
 
     const options: BuildOptions = {
       configPath: existsSync(configPath) ? configPath : null,
