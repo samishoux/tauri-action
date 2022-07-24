@@ -453,19 +453,19 @@ export async function buildProject(
             return [
               join(
                 artifactsPath,
-                `bundle/deb/${fileAppName}_${app.version}_${arch}.deb`
+                `bundle/deb/${fileAppName}-${app.version}-${arch}.deb`
               ),
               join(
                 artifactsPath,
-                `bundle/appimage/${fileAppName}_${app.version}_${arch}.AppImage`
+                `bundle/appimage/${fileAppName}-${app.version}-${arch}.AppImage`
               ),
               join(
                 artifactsPath,
-                `bundle/appimage/${fileAppName}_${app.version}_${arch}.AppImage.tar.gz`
+                `bundle/appimage/${fileAppName}-${app.version}-${arch}.AppImage.tar.gz`
               ),
               join(
                 artifactsPath,
-                `bundle/appimage/${fileAppName}_${app.version}_${arch}.AppImage.tar.gz.sig`
+                `bundle/appimage/${fileAppName}-${app.version}-${arch}.AppImage.tar.gz.sig`
               ),
             ]
           }
