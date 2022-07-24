@@ -407,13 +407,7 @@ export async function buildProject(
           )
 
           console.log(`artifactsPath: ${artifactsPath}`)
-          console.log("all files in path vvvvvvvvv")
-          readdir(artifactsPath, (err, files) => {
-            files.forEach(file => {
-              console.log(file);
-            });
-          });
-          console.log("all files in path ^^^^^^^^^")
+          
           if (platform() === 'darwin') {
             return [
               join(
@@ -458,6 +452,23 @@ export async function buildProject(
             })
             return artifacts
           } else {
+
+            console.log("all files in path vvvvvvvvv")
+            readdir(join(artifactsPath, 'bundle/deb/'), (err, files) => {
+              files.forEach(file => {
+                console.log(file);
+              });
+            });
+            console.log("all files in path ^^^^^^^^^")
+
+            console.log("all files in path vvvvvvvvv")
+            readdir(join(artifactsPath, 'bundle/appimage/'), (err, files) => {
+              files.forEach(file => {
+                console.log(file);
+              });
+            });
+            console.log("all files in path ^^^^^^^^^")
+
             const arch =
               process.arch === 'x64'
                 ? 'amd64'
