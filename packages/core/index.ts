@@ -1,5 +1,5 @@
 import { platform } from 'os'
-import { readFileSync, existsSync, copyFileSync, writeFileSync } from 'fs'
+import { readFileSync, existsSync, copyFileSync, writeFileSync, readdir } from 'fs'
 import { execa } from 'execa'
 import { parse as parseToml } from '@iarna/toml'
 import { join, resolve, normalize, sep } from 'path'
@@ -385,7 +385,9 @@ export async function buildProject(
         cwd: root,
       })
         .then(() => {
+          console.log("Attempting to start the things v4");
           let fileAppName = app.name
+          console.log(`fileAppName: ${fileAppName}`);
           // on Linux, the app product name is converted to kebab-case
           if (!['darwin', 'win32'].includes(platform())) {
             fileAppName = fileAppName
@@ -395,6 +397,8 @@ export async function buildProject(
               .toLowerCase()
           }
 
+          console.log(`fileAppName: ${fileAppName}`);
+
           const cratePath = getWorkspaceDir(app.tauriPath) ?? app.tauriPath
 
           const artifactsPath = join(
@@ -402,6 +406,14 @@ export async function buildProject(
             debug ? 'debug' : 'release'
           )
 
+          console.log(`artifactsPath: ${artifactsPath}`)
+          console.log("all files in path vvvvvvvvv")
+          readdir(artifactsPath, (err, files) => {
+            files.forEach(file => {
+              console.log(file);
+            });
+          });
+          console.log("all files in path ^^^^^^^^^")
           if (platform() === 'darwin') {
             return [
               join(
