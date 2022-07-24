@@ -250,6 +250,7 @@ export async function buildProject(
   { configPath, distPath, iconPath, tauriScript, args, bundleIdentifier }: BuildOptions
 ): Promise<string[]> {
   return new Promise<Runner>((resolve, reject) => {
+    console.log("Attempting to start the things v2");
     if (tauriScript) {
       const [runnerCommand, ...runnerArgs] = tauriScript.split(' ')
       resolve({ runnerCommand, runnerArgs })
@@ -351,6 +352,7 @@ export async function buildProject(
       }
     })
     .then((app: Application) => {
+      console.log("Attempting to start the things v3");
       const tauriConfPath = join(app.tauriPath, 'tauri.conf.json')
       if (configPath !== null) {
         copyFileSync(configPath, tauriConfPath)
