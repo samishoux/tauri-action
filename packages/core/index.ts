@@ -380,7 +380,7 @@ export async function buildProject(
         buildCommand = app.runner.runnerCommand
         buildArgs = [...app.runner.runnerArgs, 'build']
       }
-
+      console.log('build command ', buildCommand, [...buildArgs, ...tauriArgs])
       return execCommand(buildCommand, [...buildArgs, ...tauriArgs], {
         cwd: root,
       })
