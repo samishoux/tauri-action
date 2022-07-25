@@ -453,21 +453,29 @@ export async function buildProject(
             return artifacts
           } else {
 
-            console.log("all files in path vvvvvvvvv")
-            readdir(join(artifactsPath, 'bundle/deb/'), (err, files) => {
+            console.log("all files in path1 vvvvvvvvv")
+            readdir(artifactsPath, (err, files) => {
               files.forEach(file => {
                 console.log(file);
               });
             });
-            console.log("all files in path ^^^^^^^^^")
-
-            console.log("all files in path vvvvvvvvv")
-            readdir(join(artifactsPath, 'bundle/appimage/'), (err, files) => {
+            console.log("all files in path1 ^^^^^^^^^")
+            const p1 = join(artifactsPath, 'bundle/deb/')
+            console.log("all files in path2 vvvvvvvvv" + p1)
+            readdir(p1, (err, files) => {
               files.forEach(file => {
                 console.log(file);
               });
             });
-            console.log("all files in path ^^^^^^^^^")
+            console.log("all files in path2 ^^^^^^^^^")
+            const p2 = join(artifactsPath, 'bundle/appimage/');
+            console.log("all files in path2 vvvvvvvvv" + p2)
+            readdir(p2, (err, files) => {
+              files.forEach(file => {
+                console.log(file);
+              });
+            });
+            console.log("all files in path2 ^^^^^^^^^")
 
             const arch =
               process.arch === 'x64'
