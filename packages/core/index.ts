@@ -390,10 +390,12 @@ export async function buildProject(
           console.log(`fileAppName: ${fileAppName}`);
           // on Linux, the app product name is converted to kebab-case
           if (!['darwin', 'win32'].includes(platform())) {
+            console.log('replacing file app name')
             fileAppName = fileAppName
               .replace(/([a-z0-9])([A-Z])/g, '$1-$2')
               .replace(/([A-Z])([A-Z])(?=[a-z])/g, '$1-$2')
               .replace(/ /g, '-')
+              .replace(/_/g, '-')
               .toLowerCase()
           }
 
@@ -486,19 +488,19 @@ export async function buildProject(
             return [
               join(
                 artifactsPath,
-                `bundle/deb/${fileAppName}-${app.version}-${arch}.deb`
+                `bundle/deb/${fileAppName}_${app.version}_${arch}.deb`
               ),
               join(
                 artifactsPath,
-                `bundle/appimage/${fileAppName}-${app.version}-${arch}.AppImage`
+                `bundle/appimage/${fileAppName}_${app.version}_${arch}.AppImage`
               ),
               join(
                 artifactsPath,
-                `bundle/appimage/${fileAppName}-${app.version}-${arch}.AppImage.tar.gz`
+                `bundle/appimage/${fileAppName}_${app.version}_${arch}.AppImage.tar.gz`
               ),
               join(
                 artifactsPath,
-                `bundle/appimage/${fileAppName}-${app.version}-${arch}.AppImage.tar.gz.sig`
+                `bundle/appimage/${fileAppName}_${app.version}_${arch}.AppImage.tar.gz.sig`
               ),
             ]
           }
